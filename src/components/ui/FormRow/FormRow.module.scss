@@ -1,0 +1,10 @@
+.flexBox{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.flexBox > *{
+    flex: 1 1 200px;
+}

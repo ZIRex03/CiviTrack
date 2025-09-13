@@ -1,0 +1,35 @@
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  button {
+    padding: 6px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--bg-white);
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  .activePage {
+    background: var(--bg-blue);
+    color: var(--bg-white);
+  }
+
+  .ellipsis {
+    padding: 6px 12px;
+  }
+}
+
+@media(hover: hover){
+    button:hover{
+        background-color: var(--bg-light-gray);
+    }
+}

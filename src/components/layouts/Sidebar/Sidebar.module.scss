@@ -1,0 +1,64 @@
+@use "@styles/index.scss";
+
+.sidebar{
+    background-color: var(--bg-white);
+    flex-direction: column;
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    overflow: hidden;
+    overflow-y: auto;
+    transition: .3s all ease;
+}
+
+.sidebarNav{
+    padding: 20px 15px;
+}
+
+.sidebarItems{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.sidebarDesktop{
+    position: sticky;
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+}
+
+.sidebarDesktopClose{
+    width: 80px;
+    min-width: 80px;
+}
+
+.sidebarMobile{
+    position: fixed;
+    top: 0;
+    z-index: 1100;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    width: var(--sidebar-width);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.sidebarMobileOpen{
+    transform: translateX(0%);
+}
+
+.logo{
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+
+
+

@@ -1,0 +1,37 @@
+.selectorContainer {
+  position: relative;
+
+  select {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+  }
+
+  label {
+    position: absolute;
+    font-size: 12px;
+    top: -8px;
+    background-color: var(--bg-white);
+    pointer-events: none;
+    left: 5px;
+    padding: 0 4px;
+    color: var(--dark-gray);
+  }
+
+  option {
+    display: flex;
+    border: 2px solid red;
+    margin-top: 20px;
+  }
+
+  select:focus{
+    border: 1px solid var(--bg-blue);
+  }
+
+  select:focus + label{
+    color: var(--bg-blue);
+  }
+}

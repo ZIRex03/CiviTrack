@@ -1,0 +1,85 @@
+.selectorContainer {
+  position: relative;
+  width: 100%;
+  font-size: 14px;
+}
+
+.inputBox {
+  width: 100%;
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    border-color: var(--bg-blue);
+  }
+}
+
+.inputBox.active {
+  border-color: var(--bg-blue);
+
+  .floatingLabel{
+    color: var(--bg-blue);
+  }
+}
+
+.placeholder {
+  color: #aaa;
+}
+
+.arrow {
+  font-size: 10px;
+  margin-left: 8px;
+}
+
+.floatingLabel {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  font-size: 14px;
+  color: var(--dark-gray);
+  background: var(--bg-white);
+  padding: 0 4px;
+  transition: 0.2s ease;
+  pointer-events: none;
+}
+
+.floatingLabel.active {
+  top: -8px;
+  font-size: 12px;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--bg-white);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  z-index: 900;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overscroll-behavior: contain;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  cursor: pointer;
+
+  input {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background: #f2f2f2;
+  }
+}

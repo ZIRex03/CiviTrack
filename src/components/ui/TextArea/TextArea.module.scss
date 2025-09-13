@@ -1,0 +1,40 @@
+.textAreaContainer {
+  position: relative;
+
+  textarea {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    resize: none;
+  }
+
+  label {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    color: var(--dark-gray);
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    background-color: var(--bg-white);
+    padding: 0 4px;
+  }
+
+  textarea:focus + label,
+  textarea:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 5px;
+    font-size: 12px;
+  }
+
+  textarea:focus {
+    border: 1px solid var(--bg-blue);
+  }
+
+  textarea:focus + label {
+    color: var(--bg-blue);
+  }
+}

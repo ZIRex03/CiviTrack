@@ -1,0 +1,38 @@
+@use "@styles/index.scss";
+
+.item{
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    color: #000;
+    transition: .3s ease;
+    padding: 10px 15px;
+    border-radius: 12px;
+}
+
+.item.active{
+    background-color: var(--bg-blue);
+    color: var(--bg-white);
+
+    .title{
+        font-weight: 700;
+    }
+}
+.icon{
+    width: 20px;
+}
+
+.title{
+    font-size: 1rem;
+}
+
+.titleClose{
+    display: none;
+}
+
+@media(hover: hover){
+    .item:hover{
+        background-color: var(--bg-light-blue);
+        color: var(--bg-white);
+    }
+}
