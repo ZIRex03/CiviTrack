@@ -1,24 +1,28 @@
+import React from "react";
+
 import FormRow from "@/components/ui/FormRow/FormRow";
 import InfoBlock from "@/components/ui/InfoBlock/InfoBlock";
 import Input from "@/components/ui/Input/Input";
 import MultiSelector from "@/components/ui/MultiSelector/MultiSelector";
 import Selector from "@/components/ui/Selector/Selector";
-import WrapperTab from "@/components/ui/WrapperTab/WrapperTab";
-import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 const Health = ({ citizen }) => {
   const { citizens } = useSelector(({ citizens }) => citizens);
 
-  
-
-  const [insuranceNumber, setInsuranceNumber] = useState(
-    citizen.health.insuranceNumber || ""
-  );
-  const [vaccinations, setVaccinations] = useState(citizen.health.vaccinations || []);
-  const [chronicDiseases, setChronicDiseases] = useState(citizen.health.chronicDiseases || []);
-  const [allergies, setAllergies] = useState(citizen.health.allergies || []);
-  const [disability, setDisability] = useState(citizen.health.disability || "");
+  const {
+    register,
+    control
+  } = useForm({
+    defaultValues: {
+      insuranceNumber: citizen.health.insuranceNumber || "",
+      vaccinations: citizen.health.vaccinations || "",
+      chronicDiseases: citizen.health.chronicDiseases || "",
+      allergies: citizen.health.allergies || "",
+      disability: citizen.health.disability || "",
+    },
+  });
 
   return (
     <InfoBlock>
@@ -26,48 +30,67 @@ const Health = ({ citizen }) => {
         <Input
           type="number"
           placeholder="СНИЛС"
-          value={insuranceNumber}
-          onChange={(e) => setInsuranceNumber(e.target.value)}
+          {...register("insuranceNumber")}
         />
-        <Selector
-          placeholder="Инвалидность"
-          value={disability}
-          onChange={(e) => setDisability(e.target.value)}
-          data={citizens}
-          field="health.disability"
+
+        <Controller
+          control={control}
+          name="disability"
+          render={({field}) => (
+            <Selector
+              placeholder="Инвалидность"
+              value={field.value}
+              data={citizens}
+              field="health.disability"
+              onChange={(e) => field.onChange(e.target.value)}
+            />
+          )}
         />
+        
       </FormRow>
 
       <FormRow>
-        <MultiSelector
-          placeholder="Вакцинации"
+        <Controller
+          control={control}
           name="vaccinations"
-          value={vaccinations}
-          data={citizens}
-          field="health.vaccinations"
-          multiple
-          onChange={(selected) => setVaccinations(selected)}
+          render={({field}) => (
+            <MultiSelector
+              placeholder="Вакцинации"
+              value={field.value}
+              data={citizens}
+              field="health.vaccinations"
+              onChange={(value) => field.onChange(value)}
+            />
+          )}
         />
-        <MultiSelector
-          placeholder="Хронические заболевания"
+        <Controller
+          control={control}
           name="chronicDiseases"
-          value={chronicDiseases}
-          data={citizens}
-          field="health.chronicDiseases"
-          multiple
-          onChange={(selected) => setChronicDiseases(selected)}
+          render={({field}) => (
+            <MultiSelector
+              placeholder="Хронические заболевания"
+              value={field.value}
+              data={citizens}
+              field="health.chronicDiseases"
+              onChange={(value) => field.onChange(value)}
+            />
+          )}
         />
       </FormRow>
 
       <FormRow>
-        <MultiSelector
-          placeholder="Аллергии"
+        <Controller
+          control={control}
           name="allergies"
-          value={allergies}
-          data={citizens}
-          field="health.allergies"
-          multiple
-          onChange={(selected) => setAllergies(selected)}
+          render={({field}) => (
+            <MultiSelector
+              placeholder="Аллергии"
+              value={field.value}
+              data={citizens}
+              field="health.allergies"
+              onChange={(value) => field.onChange(value)}
+            />
+          )}
         />
       </FormRow>
     </InfoBlock>

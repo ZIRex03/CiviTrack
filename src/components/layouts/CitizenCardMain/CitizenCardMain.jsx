@@ -9,7 +9,6 @@ import { FaStreetView } from 'react-icons/fa';
 
 const CitizenCardMain = ({citizen}) => {
 
-    console.log(citizen)
   return (
     <div className={styles.wrapper}>
         <Link

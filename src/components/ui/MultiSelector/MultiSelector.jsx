@@ -10,7 +10,7 @@ const getNestedValue = (obj, path) => {
   }, obj);
 };
 
-const MultiSelector = ({ placeholder, name, value = [], data = [], field, onChange }) => {
+const MultiSelector = ({ placeholder, name, value = [], data = [], field, onChange}) => {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -22,7 +22,7 @@ const MultiSelector = ({ placeholder, name, value = [], data = [], field, onChan
       return Array.isArray(val) ? val : [val];
     });
 
-    return [...new Set(rawValues.filter(Boolean))];
+    return [...new Set(rawValues.filter(Boolean))].sort((a,b) => a.localeCompare(b, "ru"));
   }, [data, field]);
 
   const toggleOption = (opt) => {

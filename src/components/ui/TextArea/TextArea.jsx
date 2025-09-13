@@ -2,18 +2,15 @@ import React from 'react'
 
 import styles from './TextArea.module.scss'
 
-const TextArea = ({placeholder, value, name, onChange}) => {
+const TextArea = ({placeholder, ...rest}) => {
   return (
     <div className={styles.textAreaContainer}>
         <textarea
-            name={name}
-            id=""
             placeholder=' '
-            onChange={onChange}
-            value={value}
+            {...rest}
         > 
         </textarea>
-        <label htmlFor={name}>{placeholder}</label>
+        <label>{placeholder}</label>
     </div>
   )
 }

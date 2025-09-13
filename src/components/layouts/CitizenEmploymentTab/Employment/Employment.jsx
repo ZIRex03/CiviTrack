@@ -8,7 +8,6 @@ import WrapperTab from "@/components/ui/WrapperTab/WrapperTab";
 
 const Employment = ({ citizen }) => {
   const { citizens } = useSelector(({ citizens }) => citizens);
-  console.log(citizens);
   const [employment, setEmployment] = useState(citizen.employment || []);
 
   const handleChange = (index, field, value) => {
@@ -18,7 +17,7 @@ const Employment = ({ citizen }) => {
   };
 
   return (
-    <WrapperTab >
+    <WrapperTab>
       {employment.map((job, index) => (
         <InfoBlock key={index} title={job.company}>
           <FormRow>

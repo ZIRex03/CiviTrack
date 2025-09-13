@@ -12,7 +12,6 @@ const getNestedValue = (obj, path) => {
 
 const Selector = ({ 
   placeholder, 
-  name, 
   value, 
   data = [], 
   field, 
@@ -26,7 +25,7 @@ const Selector = ({
       return Array.isArray(val) ? val : [val];
     });
 
-    return [...new Set(rawValues.filter(Boolean))];
+    return [...new Set(rawValues.filter(Boolean))].sort((a,b) => a.localeCompare(b, "ru"));
   }, [data, field]);
 
   const handleChange = (e) => {
@@ -36,8 +35,6 @@ const Selector = ({
   return (
     <div className={styles.selectorContainer}>
       <select
-        name={name}
-        id={name}
         value={value}
         onChange={handleChange}
       >
@@ -50,7 +47,7 @@ const Selector = ({
             )
         )}
       </select>
-      <label htmlFor={name}>{placeholder}</label>
+      <label>{placeholder}</label>
     </div>
   );
 };
