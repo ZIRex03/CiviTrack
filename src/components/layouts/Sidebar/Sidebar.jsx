@@ -52,7 +52,7 @@ const Sidebar = () => {
           )}
           <ul className={styles.sidebarItems}>
             {sidebarLinks.map((link, i) => (
-              <SidebarItem key={i} sidebarLinks={link} Icon={link.icon} />
+              <SidebarItem key={i} sidebarLinks={link} Icon={link.icon} isMobile={isMobile}/>
             ))}
           </ul>
         </nav>
