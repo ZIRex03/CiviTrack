@@ -1,9 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import styles from "./CitizenTabBlock.module.scss";
-import Input from "@/components/ui/Input/Input";
-import Selector from "@/components/ui/Selector/Selector";
-import TextArea from "@/components/ui/TextArea/TextArea";
 import CitizenGeneralTab from "@/components/layouts/CitizenGeneralTab/CitizenGeneralTab";
 import CitizenEmploymentTab from "@/components/layouts/CitizenEmploymentTab/CitizenEmploymentTab";
 import CitizenEducationTab from "@/components/layouts/CitizenEducationTab/CitizenEducationTab";
@@ -44,7 +41,6 @@ const CitizenTabBlock = ({ citizen }) => {
 
   useEffect(() => {
     const container = containerRef.current;
-
     if (!container) return;
 
     const handleWheel = (e) => {
@@ -60,7 +56,7 @@ const CitizenTabBlock = ({ citizen }) => {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} >
       <div ref={containerRef} className={styles.scrollContainer}>
         <div className={styles.tabBlock}>
           {tabs.map((tab) => (

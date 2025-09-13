@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -8,11 +7,10 @@ import CitizenTabBlock from "@/components/layouts/CitizenTabBlock/CitizenTabBloc
 
 const CitizenCard = () => {
   const { id } = useParams();
-  const { citizens } = useSelector(({ citizens }) => citizens);
 
+  const { citizens } = useSelector(({ citizens }) => citizens);
   const currentCitizen = citizens.find((c) => c.id === Number(id));
   
-
   return (
     <section className={styles.wrapper}>
       <CitizenCardMain citizen={currentCitizen}/>
