@@ -12,8 +12,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function CitizensTable() {
-  
-  const { citizens } = useSelector(({citizens}) => citizens);
+  const { citizens } = useSelector(({ citizens }) => citizens);
   const citizensData = citizens;
 
   const [search, setSearch] = useState("");
@@ -22,11 +21,18 @@ export default function CitizensTable() {
   const [professionFilter, setProfessionFilter] = useState("");
 
   const regions = useMemo(
-    () => [...new Set(citizensData.map((c) => c.region))],
+    () =>
+      [...new Set(citizensData.map((c) => c.region))].sort((a, b) =>
+        a.localeCompare(b)
+      ),
     [citizensData]
   );
+
   const professions = useMemo(
-    () => [...new Set(citizensData.map((c) => c.profession))],
+    () =>
+      [...new Set(citizensData.map((c) => c.profession))].sort((a, b) =>
+        a.localeCompare(b)
+      ),
     [citizensData]
   );
 
@@ -61,19 +67,18 @@ export default function CitizensTable() {
       { header: "Регион", accessorKey: "region" },
       {
         header: "Действие",
-        cell: (info) => 
-        <Link 
-          to={`/citizens/${info.row.original.id}`} 
-          className={styles.viewBtn}
-        >
-          Подробнее
-        </Link>,
+        cell: (info) => (
+          <Link
+            to={`/citizens/${info.row.original.id}`}
+            className={styles.viewBtn}
+          >
+            Подробнее
+          </Link>
+        ),
       },
     ],
     []
   );
-
-  
 
   const table = useReactTable({
     data: filteredData,
@@ -86,7 +91,7 @@ export default function CitizensTable() {
   const { pageIndex, pageSize } = table.getState().pagination;
   const total = table.getFilteredRowModel().rows.length;
   const start = pageIndex * pageSize + 1;
-  const end = Math.min((pageIndex + 1) * pageSize, total)
+  const end = Math.min((pageIndex + 1) * pageSize, total);
 
   return (
     <div className={styles.wrapper}>
@@ -144,10 +149,11 @@ export default function CitizensTable() {
         </select>
       </div>
 
-      <span className={styles.resultsText}>Показано {start}-{end} из {total}</span>
+      <span className={styles.resultsText}>
+        Показано {start}-{end} из {total}
+      </span>
 
       <div className={styles.tableWrapper}>
-
         <table className={styles.table}>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -176,11 +182,9 @@ export default function CitizensTable() {
             ))}
           </tbody>
         </table>
-        
+
         <Pagination table={table} />
       </div>
-
-      
     </div>
   );
 }

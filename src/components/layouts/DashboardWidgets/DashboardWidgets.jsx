@@ -74,7 +74,7 @@ const DashboardWidgets = () => {
       <div className={`${styles.widget} ${styles.purple}`}>
         <div className={styles.header}>
           <FaMapMarkerAlt className={styles.icon} />
-          <span className={styles.title}>ТОП-3 региона</span>
+          <span className={styles.title}>ТОП-3 региона по числу жителей</span>
         </div>
         <ul className={styles.regionList}>
           {topRegions.map(([region, count]) => (

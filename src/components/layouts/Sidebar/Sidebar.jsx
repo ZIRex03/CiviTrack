@@ -5,7 +5,8 @@ import SidebarItem from "@/components/layouts/Sidebar/SidebarItem";
 import { toggleSidebar } from "@/features/ui/slice/uiSlice";
 
 import styles from "./Sidebar.module.scss";
-import LOGO from '@public/icons/logo.png';
+import LOGO from "@public/icons/logo.png";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { sidebarOpen } = useSelector(({ ui }) => ui);
@@ -21,7 +22,11 @@ const Sidebar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (isMobile) dispatch(toggleSidebar(false))
+  useEffect(() => {
+    if (isMobile) {
+      dispatch(toggleSidebar(false));
+    }
+  }, [isMobile, dispatch]);
 
   return (
     <>
@@ -40,12 +45,11 @@ const Sidebar = () => {
           ${isMobile && sidebarOpen ? styles.sidebarMobileOpen : ""}
         `}
       >
-
-        
         <nav className={styles.sidebarNav}>
-          {isMobile && 
-            <img src={LOGO} alt="CiviTrack" className={styles.logo}/>
-          }
+          {isMobile && (
+            <img src={LOGO} alt="CiviTrack" className={styles.logo} />
+            
+          )}
           <ul className={styles.sidebarItems}>
             {sidebarLinks.map((link, i) => (
               <SidebarItem key={i} sidebarLinks={link} Icon={link.icon} />

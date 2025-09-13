@@ -9,6 +9,7 @@ import LOGO from "@public/icons/logo.png";
 import AVATAR from '@public/user-avatars/main_avatar.png'
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "@/features/ui/slice/uiSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -22,7 +23,9 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logoBox}>
-        <img className={styles.logo} src={LOGO} alt="CiviTrack" />
+        <Link to={"/"} className={styles.logo}>
+          <img src={LOGO} alt="CiviTrack" />
+        </Link>
         <button
             className={styles.menuBtn}
             aria-label="Открыть меню"
