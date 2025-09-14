@@ -1,27 +1,20 @@
 import styles from "./Pagination.module.scss";
 
-const Pagination = ({ table }) => {
-  const pageCount = table.getPageCount();
-  const currentPage = table.getState().pagination.pageIndex;
-
+const Pagination = ({ page, pageCount, setPage }) => {
   const createPages = () => {
     const pages = [];
-    const delta = 2;
-    const left = Math.max(0, currentPage - delta);
-    const right = Math.min(pageCount - 1, currentPage + delta);
-
+    const delta = 2; // сколько страниц показывать вокруг текущей
+    const left = Math.max(1, page + 1 - delta);
+    const right = Math.min(pageCount, page + 1 + delta);
     let l;
 
-    for (let i = 0; i < pageCount; i++) {
-      if (i === 0 || i === pageCount - 1 || (i >= left && i <= right)) {
-        if (l !== undefined && i - l > 1) {
-          pages.push("...");
-        }
+    for (let i = 1; i <= pageCount; i++) {
+      if (i === 1 || i === pageCount || (i >= left && i <= right)) {
+        if (l !== undefined && i - l > 1) pages.push("...");
         pages.push(i);
         l = i;
       }
     }
-
     return pages;
   };
 
@@ -29,33 +22,25 @@ const Pagination = ({ table }) => {
 
   return (
     <div className={styles.pagination}>
-      <button
-        onClick={() => table.previousPage()}
-        disabled={!table.getCanPreviousPage()}
-      >
+      <button onClick={() => setPage(page - 1)} disabled={page === 0}>
         Назад
       </button>
 
-      {pages.map((page, idx) =>
-        page === "..." ? (
-          <span key={idx} className={styles.ellipsis}>
-            …
-          </span>
+      {pages.map((p, idx) =>
+        p === "..." ? (
+          <span key={idx} className={styles.ellipsis}>…</span>
         ) : (
           <button
             key={idx}
-            className={page === currentPage ? styles.activePage : ""}
-            onClick={() => table.setPageIndex(page)}
+            className={p - 1 === page ? styles.activePage : ""}
+            onClick={() => setPage(p - 1)}
           >
-            {page + 1}
+            {p}
           </button>
         )
       )}
 
-      <button
-        onClick={() => table.nextPage()}
-        disabled={!table.getCanNextPage()}
-      >
+      <button onClick={() => setPage(page + 1)} disabled={page === pageCount - 1}>
         Вперёд
       </button>
     </div>

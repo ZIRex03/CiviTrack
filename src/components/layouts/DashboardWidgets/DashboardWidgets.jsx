@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./DashboardWidgets.module.scss";
 import { useSelector } from "react-redux";
 import {
@@ -11,9 +11,24 @@ import {
 const DashboardWidgets = () => {
   const { citizens } = useSelector(({ citizens }) => citizens);
 
-  const maleCitizen = citizens.filter((citizen) => citizen.gender === "male");
-  const malePercent = Math.round((maleCitizen.length / citizens.length) * 100);
-  const femalePercent = 100 - malePercent;
+  const { maleCount, femaleCount, malePercent, femalePercent } = useMemo(() => {
+    const { maleCount, femaleCount } = citizens.reduce(
+      (acc, citizen) => {
+        if (citizen.gender === "male") acc.maleCount++;
+        else if (citizen.gender === "female") acc.femaleCount++;
+        return acc;
+      },
+      { maleCount: 0, femaleCount: 0 }
+    );
+
+    const total = citizens.length || 1;
+    return {
+      maleCount,
+      femaleCount,
+      malePercent: ((maleCount / total) * 100).toFixed(1),
+      femalePercent: ((femaleCount / total) * 100).toFixed(1),
+    };
+  }, [citizens]);
 
   const getAge = (birthDate) => {
     if (!birthDate) return 0;
@@ -58,7 +73,7 @@ const DashboardWidgets = () => {
           {malePercent}% / {femalePercent}%
         </span>
         <span className={styles.subtext}>
-          {maleCitizen.length} м / {citizens.length - maleCitizen.length} ж
+          {maleCount} м / {femaleCount} ж
         </span>
       </div>
 

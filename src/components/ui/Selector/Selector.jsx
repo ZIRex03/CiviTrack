@@ -10,6 +10,11 @@ const getNestedValue = (obj, path) => {
   }, obj);
 };
 
+const displayMap = {
+  male: "Мужской",
+  female: "Женский"
+}
+
 const Selector = ({ 
   placeholder, 
   value, 
@@ -42,7 +47,7 @@ const Selector = ({
           (opt, index) =>
             opt && (
               <option key={index} value={opt}>
-                {opt}
+                {displayMap[opt] || opt}
               </option>
             )
         )}
