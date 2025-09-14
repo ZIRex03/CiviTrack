@@ -5,6 +5,7 @@
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 40px;
 }
 
 .filters {
@@ -56,6 +57,7 @@
 .tr {
   display: flex;
   align-items: center;
+  height: 50px;
 }
 
 .th, .td {
@@ -66,6 +68,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.td:first-child,
+.th:first-child {
+  flex: 0 0 auto;
+  min-width: 60px;
+  width: 80px;
 }
 
 .tr:hover { background: var(--bg-light-gray); }
@@ -75,7 +87,7 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  flex: 0 0 40px;
+  flex: 0 0 auto;
 }
 
 .viewBtn {

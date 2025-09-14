@@ -3,12 +3,14 @@
     display: flex;
     margin-top: var(--header-height);
     height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
 }
 
 .content{
-    flex-grow: 1;
+    flex: 1;
     padding: 20px 30px;
     transition: .3s all ease;
+    height: 100%;
     overflow-y: auto;
 }
 
