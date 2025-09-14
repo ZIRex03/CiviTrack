@@ -1,12 +1,21 @@
-# React + Vite
+# CiviTrack - Тестовое задание
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Превью проекта
+Превью проекта доступно по ссылке: https://zirex03.github.io/CiviTrack/
 
-Currently, two official plugins are available:
+## Запуск проекта
+1. Установить зависимости
+    >npm install
+1. Запустить проект
+    >npm run dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Общая информация
+В проекте используется генератор данных с помощью библиотеки **@faker-js**, поэтому определенный набор данных может выглядеть нелогичным. Основными рабочими страницами являются страницы **Обзор** и **Граждане**. Остальные страницы и определенные кнопки демонстрируют полноту системы, но не являются рабочими.
 
-## Expanding the ESLint configuration
+## Производительность
+Для демонстрации работы с большими объебами данных сгенерированы 10 000 записей. Они отображаются в таблице с виртуализацией рендеринга. Архитектура позволит масштабироваться и до 100 000+ записей.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+При использовании в реальном проекте были бы внесены следующие изменения:
+1. Серверная пагинация и кеширование
+1. Дебаунс для поиска
+
